@@ -1,4 +1,4 @@
-import { prisma } from "../config/database.js";
+import { prisma } from "../config/database";
 
 export interface IQuestionData {
   id: number;
@@ -14,10 +14,10 @@ export async function storeQuestion(questionData: TQuestionData) {
   })
 }
 
-export async function findAllQuestions <IAnswerData>() {
+export async function findAllQuestions <IQuestionData>() {
   return await prisma.questions.findMany();
 }
 
-export async function findQuestionById <IAnswerData>(questionId: number) {
+export async function findQuestionById <IQuestionData>(questionId: number) {
   return await prisma.questions.findUnique({where: {id: questionId}});
 }

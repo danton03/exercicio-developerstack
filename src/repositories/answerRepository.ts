@@ -1,4 +1,4 @@
-import { prisma } from "../config/database.js";
+import { prisma } from "../config/database";
 
 export interface IAnswerData {
   id: number;
@@ -16,7 +16,8 @@ export async function storeAnswer(answerData: TAnswerData) {
 }
 
 export async function findAllAnswers(questionId: number) {
-  return await prisma.answers.findFirst({
+  const allAnswers = await prisma.answers.findMany({
     where: { id: questionId },
-  })
+  });
+  return allAnswers;
 }

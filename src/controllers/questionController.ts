@@ -1,7 +1,4 @@
 import { Request, Response } from 'express';
-import { number } from 'joi';
-import { storeAnswer } from '../repositories/answerRepository';
-import { findAllQuestions, storeQuestion } from '../repositories/questionRepository';
 import { createAnswerService, getQuestionByIdService } from '../services/answerService';
 import { createQuestionService, getQuestionsService } from '../services/questionService';
 
@@ -25,6 +22,7 @@ export async function get(req: Request, res: Response) {
 
 export async function getById(req: Request, res: Response) {
   const questionId = Number(req.params.id);
-  const question = getQuestionByIdService(questionId);
+  const question = await getQuestionByIdService(questionId);
+  console.log(question);
   return res.status(200).send(question);
 }

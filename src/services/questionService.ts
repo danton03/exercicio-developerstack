@@ -8,6 +8,6 @@ export async function getQuestionsService() {
   return await findAllQuestions();
 }
 
-export async function getQuestionById(questionId: number) {
+export async function getQuestionById<IQuestionData>(questionId: number) {
   return await findQuestionById(questionId);
 }

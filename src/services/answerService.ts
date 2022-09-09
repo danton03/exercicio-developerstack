@@ -10,8 +10,11 @@ export async function createAnswerService(answer: TAnswerData, questionId: numbe
 }
 
 export async function getQuestionByIdService(questionId: number) {
-  const question = questionsService.getQuestionById(questionId);
-  const allAnswers = findAllAnswers(questionId);
-  const questionData = {question: question, answers: allAnswers}
+  const question = await questionsService.getQuestionById(questionId);
+  const allAnswers = await findAllAnswers(questionId);
+  const questionData = {
+    question, 
+    answers: allAnswers
+  }
   return questionData;
 }
